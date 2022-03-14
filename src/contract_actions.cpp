@@ -1,3 +1,12 @@
+void monkeymarket::_dummy_aa(
+        eosio::name & from,
+        eosio::name & to,
+        std::vector<uint64_t> & asset_ids,
+        std::string & memo)
+{
+    return;
+}
+
 /*
     Adds an entry to the allowed templates that can be bought from the smart contract.
 
