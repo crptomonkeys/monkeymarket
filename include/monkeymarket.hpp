@@ -5,7 +5,7 @@
 
 #include <atomicassets.hpp>
 
-CONTRACT niftyshopper : public eosio::contract
+CONTRACT monkeymarket : public eosio::contract
 {
 public:
     using eosio::contract::contract;

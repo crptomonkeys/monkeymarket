@@ -1,3 +1,12 @@
+void monkeymarket::_dummy_aa(
+        eosio::name & from,
+        eosio::name & to,
+        std::vector<uint64_t> & asset_ids,
+        std::string & memo)
+{
+    return;
+}
+
 /*
     Adds an entry to the allowed templates that can be bought from the smart contract.
 
@@ -7,7 +16,7 @@
 
     @auth self
 */
-void niftyshopper::setstore(
+void monkeymarket::setstore(
     uint64_t template_id,
 
     eosio::name &token_contract,
@@ -44,7 +53,7 @@ void niftyshopper::setstore(
 
     @auth self
 */
-void niftyshopper::rmstore(
+void monkeymarket::rmstore(
     uint64_t template_id)
 {
     require_auth(get_self());
@@ -60,7 +69,7 @@ void niftyshopper::rmstore(
 
     @auth self
 */
-void niftyshopper::init()
+void monkeymarket::init()
 {
     require_auth(get_self());
     get_config().remove();
@@ -73,7 +82,7 @@ void niftyshopper::init()
 
     @auth self
 */
-void niftyshopper::destruct()
+void monkeymarket::destruct()
 {
     require_auth(get_self());
     get_config().remove();
@@ -88,7 +97,7 @@ void niftyshopper::destruct()
 
     @auth self
 */
-void niftyshopper::maintenance(bool maintenance)
+void monkeymarket::maintenance(bool maintenance)
 {
     require_auth(get_self());
 

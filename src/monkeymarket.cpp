@@ -1,13 +1,13 @@
-#include <niftyshopper.hpp>
+#include <monkeymarket.hpp>
 
 #include "contract_actions.cpp"
 
-void niftyshopper::maintenace_check()
+void monkeymarket::maintenace_check()
 {
     eosio::check(!get_config().get().maintenance, "Contract is in maintenance");
 }
 
-void niftyshopper::receive_token_transfer(
+void monkeymarket::receive_token_transfer(
     eosio::name &from,
     eosio::name &to,
     eosio::asset &token,

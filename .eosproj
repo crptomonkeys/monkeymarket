@@ -1,6 +1,6 @@
 {
-  "main": "src\\niftyshopper.cpp",
-  "contract": "niftyshopper",
+  "main": "src\\monkeymarket.cpp",
+  "contract": "monkeymarket",
   "include": "",
   "resource": "",
   "cdt": "v1.7.0",
