@@ -99,3 +99,21 @@ void niftyshopper::maintenance(bool maintenance)
 
     config.set(new_config, get_self());
 }
+
+/*
+ * Set the params for this contract, overwriting the existing config object.
+ *
+ * @param {cfg_params} params - the params
+ *
+ * @auth self
+ */
+void niftyshopper::setparams(cfg_params &params)
+{
+    require_auth(get_self());
+    auto config = get_config();
+    auto new_config = config.get();
+
+    new_config.params = params;
+
+    config.set(new_config, get_self());
+}

@@ -10,6 +10,10 @@ CONTRACT niftyshopper : public eosio::contract
 public:
     using eosio::contract::contract;
 
+    struct cfg_params {
+        uint32_t timeout_seconds = 0;
+    };
+
     [[eosio::on_notify("*::transfer")]] void receive_token_transfer(
         eosio::name & from,
         eosio::name & to,
@@ -38,11 +42,13 @@ public:
     [[eosio::action]] void init();
     [[eosio::action]] void destruct();
     [[eosio::action]] void maintenance(bool maintenance);
+    [[eosio::action]] void setparams(cfg_params & params);
 
 private:
     struct [[eosio::table("config")]] _config_entity
     {
         bool maintenance = true;
+        cfg_params params;
     };
     typedef eosio::singleton<eosio::name("config"), _config_entity> _config;
 
