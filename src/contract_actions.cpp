@@ -117,3 +117,8 @@ void niftyshopper::setparams(cfg_params &params)
 
     config.set(new_config, get_self());
 }
+
+/*
+ * dummy noop implementation, see the header for the reason for this noop
+ */
+void niftyshopper::_dummy_aa(eosio::name& from, eosio::name& to, std::vector<uint64_t>& asset_ids, std::string& memo) {}
