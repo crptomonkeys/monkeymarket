@@ -65,6 +65,15 @@ private:
     };
     typedef eosio::multi_index<eosio::name("store"), _store_entity> _store;
 
+    struct [[eosio::table("users")]] _users_entity
+    {
+        eosio::name user;
+        eosio::time_point_sec last_buy;
+
+        uint64_t primary_key() const { return user.value; }
+    };
+    typedef eosio::multi_index<eosio::name("users"), _users_entity> _users;
+
     _config get_config()
     {
         return _config(get_self(), get_self().value);
@@ -73,6 +82,11 @@ private:
     _store get_store()
     {
         return _store(get_self(), get_self().value);
+    }
+
+    _users get_users()
+    {
+        return _users(get_self(), get_self().value);
     }
 
     void maintenace_check();
