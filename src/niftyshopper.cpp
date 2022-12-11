@@ -20,6 +20,32 @@ void niftyshopper::receive_token_transfer(
 
     maintenace_check();
 
+    // Check if the user is on cooldown
+    auto params = get_config().get().params;
+    if (params.timeout_seconds > 0)
+    {
+        auto users = get_users();
+        auto user = users.find(from.value);
+        if (user != users.end())
+        {
+            auto now = eosio::current_time_point();
+            eosio::microseconds timeout(1000000 * params.timeout_seconds);
+            eosio::check(user->last_buy + timeout  < now, "user is on cooldown");
+            users.modify(user, eosio::same_payer, [&](auto & row) {
+                row.last_buy = now;
+            });
+        }
+        else
+        {
+            auto now = eosio::current_time_point();
+            users.emplace(get_self(), [&](auto & row) {
+                row.user = from;
+                row.last_buy = now;
+            });
+        }
+    }
+
+
     // Check if the memo starts with buy:
     if (memo.rfind("buy:", 0) == 0)
     {
