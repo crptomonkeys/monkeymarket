@@ -29,7 +29,7 @@ void niftyshopper::receive_token_transfer(
         if (user != users.end())
         {
             auto now = eosio::current_time_point();
-            eosio::microseconds timeout(1000000 * params.timeout_seconds);
+            eosio::microseconds timeout(1000000 * uint64_t(params.timeout_seconds));
             eosio::check(user->last_buy + timeout  < now, "user is on cooldown");
             users.modify(user, eosio::same_payer, [&](auto & row) {
                 row.last_buy = now;
